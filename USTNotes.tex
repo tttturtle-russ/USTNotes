@@ -7,6 +7,7 @@
 \usepackage{hyperref}
 \usepackage{background}
 \usepackage{listings}
+\usepackage{xcolor}
 
 \newcommand{\ClassName}{Operating System}
 \newcommand{\Professor}{Dawen CHEN}
@@ -24,43 +25,16 @@
 \fancyhead[R]{\textbf{\ClassName}}
 \fancyfoot[C]{\thepage}
 
-\backgroundsetup{
-	scale=0.75,
-	angle=0,
-	position=current page.center,
-	opacity=0.15, % for transparency!
-	contents={\includegraphics[height=\paperheight,width=\paperwidth]{background.png}}
-}
-
 % Section formatting
 \titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
-
-%% ---- LESSON ENVIRONMENT ----
-%\newcounter{lesson}
-%\renewcommand{\thelesson}{\arabic{lesson}}
-%\newcounter{point}[lesson]
-%\renewcommand{\thepoint}{\arabic{point}}
-%\newenvironment{lesson}[1]{%
-%    \refstepcounter{lesson}%
-%    \setcounter{point}{0}%
-%    \clearpage
-%    \section*{Lesson \thelesson: #1}
-%    \addcontentsline{toc}{section}{Lesson \thelesson: #1}
-%}{%
-%    \par\vspace{2em}\hrule
-%}
-%\newenvironment{point}[1]{%
-%    \refstepcounter{point}%
-%    \par\noindent\textbf{Point~\thepoint.~#1}\par
-%}{\par\vspace{0.7em}}
 
 % Listings setup for code display
 \lstset{
   backgroundcolor=\color{codebg},
   frame=single,
   rulecolor=\color{codeframe},
-  basicstyle=\ttfamily\medium,
+  basicstyle=\ttfamily\normalsize,
   keywordstyle=\color{blue!70},
   commentstyle=\color{red!50!green!50!blue!50},
   frame=shadowbox,
@@ -79,18 +53,14 @@
   numberstyle=\tiny,
 }
 
-
 \begin{document}
 
+\backgroundsetup{contents={}} %turn off background on titlepage
 % ---------------- COVER PAGE ----------------
 \begin{titlepage}
-	\NoBgThispage
     \centering
-    % School Logo Placeholder
-	\begin{figure}
-		\centering
-		\includegraphics[width=5cm]{UST.png}
-	\end{figure}
+    \includegraphics[width=5cm]{UST.png}
+    \par
     \vspace{1cm}
     {\Huge \bfseries \ClassName \par}
     {\Huge \bfseries \ClassNum \par}
@@ -107,44 +77,48 @@
 \end{titlepage}
 
 % ---------------- TABLE OF CONTENTS ----------------
+\backgroundsetup{
+    scale=0.75,
+    angle=0,
+    position=current page.center,
+    opacity=0.4,
+    contents={\includegraphics[height=\paperheight,width=\paperwidth]{background.png}}
+}
 \tableofcontents
 \newpage
-% ---------------- CONTENT ----------------
 
-\begin{section}{Basic Usage}
-\begin{subsection}{Subsection}
+% ---------------- CONTENT ----------------
+\section{Basic Usage}
+\subsection{Subsection}
 \textbf{You can use normal \LaTeX\ grammar inside this scope.}
 
-\begin{subsection}{For example}
+\subsection{For example}
 You can make an unordered list, like this:
 \begin{itemize}
-	\item This is the first item
-	\item This is the second item
+    \item This is the first item
+    \item This is the second item
 \end{itemize}
 
 Or you can make an ordered list, like this:
 \begin{enumerate}
-	\item This is the first item
-	\item This is the second item
+    \item This is the first item
+    \item This is the second item
 \end{enumerate}
 
 You can also insert a math formula both inline: $E = mc^2$ and centering $$E = mc^2$$
 
+\subsection{Create a code block}
+\begin{lstlisting}[language=C, caption={Example C code}]
+#include <stdio.h>
 
-\begin{subsection}{Create a code block}
-\begin{lstlisting}[language=C, caption=Example C code]
-	#include <stdio.h>
-	
-	int main() {
-		printf("Hello HKUST\n"); // this is a comment
-		return 0;
-	}
+int main() {
+    printf("Hello HKUST\n"); // this is a comment
+    return 0;
+}
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption=Example Python code]
-	print("Hello HKUST")
+\begin{lstlisting}[language=Python, caption={Example Python code}]
+print("Hello HKUST")
 \end{lstlisting}
-
-% Add more sections/subsections as needed
 
 \end{document}
