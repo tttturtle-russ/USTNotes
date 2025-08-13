@@ -8,6 +8,7 @@
 \usepackage{background}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{minted}
 
 \newcommand{\ClassName}{Operating System}
 \newcommand{\Professor}{Dawen CHEN}
@@ -30,27 +31,14 @@
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
 % Listings setup for code display
-\lstset{
-  backgroundcolor=\color{codebg},
-  frame=single,
-  rulecolor=\color{codeframe},
-  basicstyle=\ttfamily\normalsize,
-  keywordstyle=\color{blue!70},
-  commentstyle=\color{red!50!green!50!blue!50},
-  frame=shadowbox,
-  rulesepcolor=\color{red!20!green!20!blue!20},
-  breaklines=true,
-  columns=fullflexible,
-  keepspaces=true,
-  captionpos=b,
-  aboveskip=1em,
-  belowskip=1em,
-  xleftmargin=1em,
-  xrightmargin=1em,
-  framerule=0.7pt,
-  showstringspaces=false,
-  numbers=left,
-  numberstyle=\tiny,
+\usemintedstyle{rainbow_dash} % for more sytles, see https://pygments.org/demo/
+\setminted{
+  mathescape,
+  linenos,
+  numbersep=5pt,
+  gobble=2,
+  frame=lines,
+  framesep=2mm
 }
 
 \begin{document}
@@ -108,17 +96,29 @@ Or you can make an ordered list, like this:
 You can also insert a math formula both inline: $E = mc^2$ and centering $$E = mc^2$$
 
 \subsection{Create a code block}
-\begin{lstlisting}[language=C, caption={Example C code}]
-#include <stdio.h>
 
-int main() {
-    printf("Hello HKUST\n"); // this is a comment
-    return 0;
-}
-\end{lstlisting}
+\begin{minted}{c}
+    int main() {
+        printf("hello, world");
+        return 0;
+    }   
+\end{minted}
 
-\begin{lstlisting}[language=Python, caption={Example Python code}]
-print("Hello HKUST")
-\end{lstlisting}
+If you want to add a caption or a label to the code block, use the following code template
+\inputminted{latex}{code_template.m}
+
+Then it will look like this:
+
+% wrap minted block with listing, then you can add a caption and refer to it.
+\begin{listing}[ht]
+\begin{minted}{python}
+    print("Hello HKUST!")
+\end{minted}
+\caption{This is a code block with caption}
+\label{listing:1}
+\end{listing}
+
+This is a reference \ref{listing:1} to Python code.
 
 \end{document}
+
